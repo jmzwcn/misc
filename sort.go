@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func mains() {
+func mainsort() {
 	//保存需要排序的Slice
 	arr := []int{9, 3, 4, 7, 2, 1, 0, 11, 12, 11, 13, 4, 7, 2, 1, 0, 11, 12}
 	//实际用于排序的Slice
@@ -78,13 +78,13 @@ func quickSort(values []int) {
 
 func insertSort(values []int) {
 	for i := 1; i < len(values); i++ {
-		temp := values[i]
+		current := values[i]
 		j := i - 1
-		for j >= 0 && temp < values[j] {
+		for j >= 0 && current < values[j] { //平移
 			values[j+1] = values[j] //后挪一个
 			j--
 		}
-		values[j+1] = temp
+		values[j+1] = current
 	}
 }
 
