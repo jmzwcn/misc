@@ -21,11 +21,11 @@ func mainsort() {
 	fmt.Println("快速排序：\t", list)
 
 	copy(list, arr)
-	insertSort(list)
+	insertSort2(list)
 	fmt.Println("插入排序：\t", list)
 
 	copy(list, arr)
-	heapSort(list)
+	heapSort2(list)
 	fmt.Println("大堆排序：\t", list)
 
 	copy(list, arr)
@@ -88,6 +88,36 @@ func insertSort(values []int) {
 	}
 }
 
+func insertSort2(values []int) {
+	for i := 1; i < len(values); i++ {
+		position := 0
+		for j := 0; j < i; j++ { //获取合适位置
+			if values[i] >= values[j] && values[i] <= values[j+1] {
+				position = j + 1
+				break
+			}
+		}
+		current := values[i]
+		for q := i - 1; q >= position; q-- { //平移须从后往前
+			values[q+1] = values[q]
+		}
+		values[position] = current
+	}
+}
+
+func heapSort2(values []int) {
+	for i := 0; i < len(values); i++ {
+		for j := len(values) - i - 1; j >= 0; j-- { //算父亲须从后往前
+			parent := (j - 1) / 2
+			if values[j] > values[parent] {
+				values[j], values[parent] = values[parent], values[j]
+			}
+		}
+		values[0], values[len(values)-1-i] = values[len(values)-1-i], values[0]
+	}
+
+}
+
 func heapSort(values []int) {
 	for i := 0; i < len(values); i++ {
 		buildMaxHeap(values, len(values)-i)
@@ -101,6 +131,16 @@ func buildMaxHeap(values []int, size int) {
 			values[j], values[parent] = values[parent], values[j]
 		}
 	}
+}
+
+func mergeSort2(values []int) []int {
+
+	for i := len(values) / 2; i >= 1; i = i / 2 {
+		for j := i; j < i; j++ {
+
+		}
+	}
+	return nil
 }
 
 func mergeSort(values []int) []int {
