@@ -2,7 +2,54 @@ package main
 
 import "fmt"
 
+type BookInterface interface {
+	String()
+}
+type Book struct {
+	Title  string
+	Author string
+	Intor  string
+}
+
+func (s *Book) String() {
+	fmt.Println(s.Title, s.Author, s.Intor)
+}
+
+type MyBook1 struct {
+	bo      Book
+	Content string
+}
+
+type MyBook2 struct {
+	Book
+	Content string
+}
+
 func main() {
+	println("a")
+	my1 := &MyBook1{
+		Content: "xxx",
+	}
+	my1.bo = Book{
+		Title:  "Go",
+		Author: "songtianyi",
+		Intor:  "GoGoGo",
+	}
+
+	my2 := &MyBook2{
+		Content: "xxx",
+	}
+	my2.Book = Book{
+		Title:  "Go",
+		Author: "songtianyi",
+		Intor:  "GoGoGo",
+	}
+
+	//fmt.Println(BookInterface(my1))
+	fmt.Println(BookInterface(my2))
+}
+
+func maintest() {
 	sentence := []rune("hello from JD")
 	reverse(sentence)
 	begin, end := 0, 0
